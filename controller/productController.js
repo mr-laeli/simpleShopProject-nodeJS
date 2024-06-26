@@ -24,7 +24,20 @@ async function getById(req, res) {
      }
 }
 
+async function deleteProduct(req, res) {
+     const id = req.url.split('/')[2];
+     const product = productModel.findProductById(id);
+     if (product) {
+          const result = await productModel.deleteProduct(id);
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(result));
+          res.end();
+     } else {
+          console.log('error');
+     }
+}
 module.exports = {
      getMain,
      getById,
+     deleteProduct,
 };
