@@ -1,5 +1,5 @@
 const { resolve } = require('path');
-const products = require('../products ( data )/products.json');
+const products = require('../products/products.json');
 const fs = require('fs');
 
 async function findProduct() {
@@ -28,8 +28,27 @@ async function deleteProduct(id) {
      });
 }
 
+async function updateProduct(id, payload) {
+     return new Promise((resolve, reject) => {
+          products.map((product) => {
+               if (product.id == id) {
+                    Object.assign(product, payload);
+               }
+               return products;
+          });
+          fs.writeFile(
+               `${process.cwd()}/products/products.json`,
+               JSON.stringify(products),
+               (err) => {
+                    if (err) reject(err);
+                    else resolve('updated succsesfully');
+               },
+          );
+     });
+}
 module.exports = {
      findProduct,
      findProductById,
      deleteProduct,
+     updateProduct,
 };
