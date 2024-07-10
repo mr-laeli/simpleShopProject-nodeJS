@@ -1,6 +1,6 @@
 const productModel = require('../model/productModel');
 
-async function getMain(req, res) {
+async function getAllProducts(req, res) {
      try {
           const products = await productModel.findProduct();
           res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -11,7 +11,7 @@ async function getMain(req, res) {
      }
 }
 
-async function getById(req, res) {
+async function getProductById(req, res) {
      try {
           const id = req.url.split('/')[2];
           const products = await productModel.findProductById(id);
@@ -78,8 +78,8 @@ async function createProduct(req, res) {
 }
 
 module.exports = {
-     getMain,
-     getById,
+     getAllProducts,
+     getProductById,
      deleteProduct,
      updateProduct,
      createProduct,

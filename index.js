@@ -5,9 +5,9 @@ const PORT = 5000;
 
 const SERVER = HTTP.createServer((req, res) => {
      if (req.url == ('/products' || '') && req.method == 'GET') {
-          productController.getMain(req, res);
+          productController.getAllProducts(req, res);
      } else if (req.url.match(/\/products\/[0-9]+/) && req.method == 'GET') {
-          productController.getById(req, res);
+          productController.getProductById(req, res);
      } else if (req.url.match(/\/products\/[0-9]+/) && req.method == 'PUT') {
           productController.updateProduct(req, res);
      } else if (req.url.match(/\/products\/[0-9]+/) && req.method == 'DELETE') {

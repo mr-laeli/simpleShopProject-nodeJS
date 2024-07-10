@@ -3,6 +3,7 @@ const { ObjectId } = require('mongodb');
 const mongoConnection = require('../utils/mongo-connection');
 const fs = require('fs');
 
+//find product from database
 async function findProduct() {
      const DB = await new mongoConnection().get();
      return new Promise(async (resolve, reject) => {
@@ -11,6 +12,7 @@ async function findProduct() {
      });
 }
 
+//find product from database by id
 async function findProductById(id) {
      const DB = await new mongoConnection().get();
      return new Promise(async (resolve, reject) => {
@@ -20,6 +22,7 @@ async function findProductById(id) {
      });
 }
 
+////delete product in database
 async function deleteProduct(id) {
      const DB = await new mongoConnection().get();
      return new Promise(async (resolve, reject) => {
@@ -29,6 +32,7 @@ async function deleteProduct(id) {
      });
 }
 
+//upadte product in database
 async function updateProduct(id, payload) {
      const DB = await new mongoConnection().get();
      return new Promise(async (resolve, reject) => {
@@ -42,6 +46,7 @@ async function updateProduct(id, payload) {
      });
 }
 
+//create product in database
 async function createProduct(payload) {
      const DB = await new mongoConnection().get();
      return new Promise(async (resolve, reject) => {
