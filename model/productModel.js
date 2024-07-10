@@ -46,9 +46,25 @@ async function updateProduct(id, payload) {
           );
      });
 }
+
+async function createProduct(product) {
+     return new Promise((resolve, reject) => {
+          products.push(product);
+          fs.writeFile(
+               `${process.cwd()}/products/products.json`,
+               JSON.stringify(products),
+               (err) => {
+                    if (err) reject(err);
+                    else resolve();
+               },
+          );
+     });
+}
+
 module.exports = {
      findProduct,
      findProductById,
      deleteProduct,
      updateProduct,
+     createProduct,
 };

@@ -12,6 +12,8 @@ const SERVER = HTTP.createServer((req, res) => {
           productController.updateProduct(req, res);
      } else if (req.url.match(/\/products\/[0-9]/) && req.method == 'DELETE') {
           productController.deleteProduct(req, res);
+     } else if (req.url == ('/products' || '') && req.method == 'POST') {
+          productController.createProduct(req, res);
      }
 });
 

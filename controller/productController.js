@@ -59,9 +59,29 @@ async function updateProduct(req, res) {
           }
      });
 }
+
+async function createProduct(req, res) {
+     try {
+          let newProduct = '';
+          req.on('data', (chunk) => {
+               newProduct += chunk.toString();
+          });
+          req.on('end', async () => {
+               const product = { id: Date.now(), ...JSON.parse(newProduct) };
+               const result = await productModel.createProduct(product);
+               res.writeHead(201, { 'Content-Type': 'application/json' });
+               res.write(JSON.stringify('updated'));
+               res.end();
+          });
+     } catch (error) {
+          console.log(error);
+     }
+}
+
 module.exports = {
      getMain,
      getById,
      deleteProduct,
      updateProduct,
+     createProduct,
 };
