@@ -44,8 +44,6 @@ async function updateProduct(req, res) {
           newProduct += chunk.toString();
      });
      req.on('end', async () => {
-          console.log('update');
-
           const parsedBody = { ...JSON.parse(newProduct) };
 
           if (product) {
